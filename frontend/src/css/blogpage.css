@@ -1,0 +1,17 @@
+.side-cards{
+    user-select: none;
+}
+.side-cards:hover {
+    background-color: lightblue;
+    cursor: pointer;
+}
+
+.image-container {
+    /* width: 100%; */
+    /* height: auto; */
+}
+
+.hero-image {
+    /* max-width: 100%;
+    height: auto; */
+}

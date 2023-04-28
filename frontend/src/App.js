@@ -5,6 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import BlogPage from './components/BlogPage';
 import EditPostPage from './components/EditPostPage';
 import BlogDataService from './services/blogService';
+import ContactPage from './components/ContactPage';
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
         <Route path="/blog" element={<BlogPage/>}></Route>
         <Route path="/edit" element={<EditPostPage/>}></Route>
         <Route path="/edit/:id" element={<EditPostPage/>}></Route>
+        <Route path="/contact" element={<ContactPage/>}></Route>
       </Routes>
     </div>
   );

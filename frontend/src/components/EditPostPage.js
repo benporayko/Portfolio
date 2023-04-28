@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import queryString from 'query-string';
 import BlogDataService from "../services/blogService";
 import { useNavigate } from "react-router-dom";
+import NavBar from "./NavBar";
 
 
 const EditPost = () => {
@@ -128,6 +129,7 @@ const EditPost = () => {
 
     return(
         <div className="container-fluid">
+            <NavBar></NavBar>
             <form onSubmit={submitFormHandler} encType="multipart/form-data">
                 <div className="row">
                     <div className="col-sm-9">

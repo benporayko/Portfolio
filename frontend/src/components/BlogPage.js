@@ -5,12 +5,17 @@ import BlogDataService from '../services/blogService';
 import "../css/blogpage.css"
 import { Link, useNavigate } from "react-router-dom";
 import HeroImage from "./HeroImage";
+import NavBar from "./NavBar";
 
 const BlogPage = props => {
     const [listOfPosts, setListOfPosts] = useState([]);
+    const [allPosts, setAllPosts] = useState([]);
     const [newestPost, setNewestPost] = useState([]);
+    const [sortedTags, setSortedTags] = useState([]);
 
     const navigate = useNavigate();
+
+    let tagCount = 0;
 
     useEffect(() => {
         retrievePosts()
@@ -26,6 +31,27 @@ const BlogPage = props => {
         setNewestPost(clicked);
     }
 
+    const tagButtonHandler = (event) => {
+        const selectedTag = event.target.value;
+        const tempArray = []
+        
+        if (selectedTag == "all") {
+            setListOfPosts(allPosts);
+        } 
+        else {
+            // finds posts that have tags matching the pressed tag button
+            allPosts.forEach(post => {
+                post.tags.forEach(tag => {
+                    if (tag.toLowerCase().includes(selectedTag.toLowerCase())) {
+                        tempArray.push(post);
+                    }
+                });
+            });
+            setListOfPosts(tempArray);
+        }
+
+    }
+
     const retrievePosts = () => {
         BlogDataService.getAll().then(response => {
             // sorts array by date, with newest blog post being at index 0
@@ -37,14 +63,72 @@ const BlogPage = props => {
                     return dateB - dateA;
                 }
             )
-            // console.log(sortedArray[0]);
-            setListOfPosts(sortedArray);
-            setNewestPost(sortedArray[0]);
+            // ensures that only posts marked as published appear on the blog page
+            let filterByPublished = sortedArray.filter(function(x) {return x.published == true });
+            setListOfPosts(filterByPublished);
+            // keeps a list of all posts to refer to in case listOfPosts has been filtered
+            setAllPosts(filterByPublished);
+            setNewestPost(filterByPublished[0]);
+            populateTags(filterByPublished);
         })
     }
 
+    const populateTags = (posts) => {
+        // populate the tags with the most used tags
+        // for each array of tags per object in the array allPosts,
+        // add each individual tag to a new array with a count of 1
+        // if tag repeats, increment the counter
+        // sort the array with the most popular tags at the beginning
+        const tagCounters = {};
+
+        console.log(posts)
+
+        posts.forEach(post => {
+            post.tags.forEach(tag => {
+                const lowerCaseTag = tag.toLowerCase();
+
+                if (lowerCaseTag in tagCounters) {
+                    tagCounters[lowerCaseTag]++;
+                } else {
+                    tagCounters[lowerCaseTag] = 1;
+                }
+            });
+        });
+
+        const tagList = Object.keys(tagCounters).map(tag => {
+            return { name: tag, count: tagCounters[tag] };
+        });
+
+        let sortedTagList = tagList.sort(
+            function compare(a, b) {
+                return b.count - a.count;
+            }
+        )
+
+        setSortedTags(sortedTagList);
+    }
+
     return (
-        <div className="container-xxl mt-3">
+        <div className="container-fluid">
+            <NavBar></NavBar>
+            <div className="container-xxl mt-3">
+                <div className="row">
+                    <div className="col mb-3 text-end">
+                        <h4 style={{display: "inline", textAlign: "center"}}>Filter by Tag: </h4>
+                        <button className="btn btn-primary ms-1 mt-1" value="all" onClick={tagButtonHandler}>All</button>
+                        {
+                            sortedTags.map((x, index) => {
+                                if (tagCount < 4) {
+                                    console.log(tagCount);
+                                    tagCount++;
+                                    return <button className="btn btn-primary ms-1 mt-1" value={x.name} onClick={tagButtonHandler}>{x.name}</button>
+                                }
+                            })
+                        }
+                        {/* <button className="btn btn-primary ms-1" value="retro" onClick={tagButtonHandler}>Retro</button>
+                        <button className="btn btn-primary ms-1" value="jrpg" onClick={tagButtonHandler}>JRPG</button> */}
+                    </div>
+                </div>
             <div className="row">
                 <div className="col-md-8">
                     <div className="card mb-3">
@@ -63,7 +147,7 @@ const BlogPage = props => {
                                 <h3 className="card-subtitle mb-2 text-body-secondary">{newestPost.subtitle}</h3>
                             </div>
                             
-                            <p className="card-text">{newestPost.body}</p>
+                            <p className="card-text blog-body-text">{newestPost.body}</p>
                             <Link to={"/edit/?" + newestPost._id}>
                                 <button type="button" className="btn btn-primary">Edit Post</button>
                             </Link>
@@ -93,6 +177,8 @@ const BlogPage = props => {
                 </div>
             </div>
         </div>
+        </div>
+        
     )
 }
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import dayjs from "dayjs";
 import BlogDataService from '../services/blogService';
+import { retrievePosts } from "../services/blogPostUtils";
 
 import "../css/blogpage.css"
 import { Link, useNavigate } from "react-router-dom";
@@ -18,7 +19,16 @@ const BlogPage = props => {
     let tagCount = 0;
 
     useEffect(() => {
-        retrievePosts()
+        const fetchData = async () => {
+            const filteredArray = await retrievePosts();
+            console.log(filteredArray);
+            setListOfPosts(filteredArray);
+            // keeps a list of all posts to refer to in case listOfPosts has been filtered
+            setAllPosts(filteredArray);
+            setNewestPost(filteredArray[0]);
+            populateTags(filteredArray);
+        }
+        fetchData();
     }, []);
 
     // page does not immediately update with editted info
@@ -50,27 +60,6 @@ const BlogPage = props => {
             setListOfPosts(tempArray);
         }
 
-    }
-
-    const retrievePosts = () => {
-        BlogDataService.getAll().then(response => {
-            // sorts array by date, with newest blog post being at index 0
-            // reverse by swapping dateB and dateA in the return statement
-            let sortedArray = response.data.blog_posts.sort(
-                function compare(a, b) {
-                    let dateA = new Date(a.date);
-                    let dateB = new Date(b.date);
-                    return dateB - dateA;
-                }
-            )
-            // ensures that only posts marked as published appear on the blog page
-            let filterByPublished = sortedArray.filter(function(x) {return x.published == true });
-            setListOfPosts(filterByPublished);
-            // keeps a list of all posts to refer to in case listOfPosts has been filtered
-            setAllPosts(filterByPublished);
-            setNewestPost(filterByPublished[0]);
-            populateTags(filterByPublished);
-        })
     }
 
     const populateTags = (posts) => {
@@ -144,7 +133,7 @@ const BlogPage = props => {
                                 <div>
                                     {newestPost.publicUrl != null && <HeroImage newestPost={newestPost}></HeroImage>}
                                 </div>
-                                <h3 className="card-subtitle mb-2 text-body-secondary">{newestPost.subtitle}</h3>
+                                <h3 className="card-subtitle mb-2 mt-2 text-body-secondary">{newestPost.subtitle}</h3>
                             </div>
                             
                             <p className="card-text blog-body-text">{newestPost.body}</p>

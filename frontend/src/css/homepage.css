@@ -19,3 +19,11 @@
     flex-direction: column;
     justify-content: center;
 }
+
+.alt-head {
+    text-align: right;
+}
+
+.info-text {
+    font-size: large;
+}

@@ -76,6 +76,46 @@ const Home = () => {
                     </div>
                 </div>
             </div>
+            <div className="info-content">
+                <div className="container-fluid">
+                    <div className="row">
+                        <div class="col-xs-12">
+                            <hr></hr>
+                        </div>
+                        <div className="row">
+                            <div className="col-md-2"></div>
+                            <div className="col-md-8">
+                                <div className="card bg-dark text-white p-3">
+                                    <div className="card-title">
+                                        <div className="col-xs-12 title-text">
+                                            <h1>About Me</h1>
+                                        </div>
+                                    </div>
+                                    <div className="col-xs-12">
+                                        <p className="info-text">Hi there, and welcome to my portfolio website. This website is designed to be a showcase of my work and skills as a software developer.
+                                            The website itself is a coding project of my own.
+                                        </p>
+                                        <p className="info-text">My name is Ben Porayko, and I am a Canadian Software Developer located in the city of Calgary. 
+                                            I graduated from the Southern Alberta Institute of Technology with a Diploma in Software Development in 2022.
+                                            With a wealth of knowledge under my belt, I am excited to begin a rewarding career as a software developer and experience what the world of tech has to offer.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-md-2"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className="skill-content">
+                <div className="container-fluid">
+                    <div className="row">
+                        <div className="col-xs-12">
+                            <hr></hr>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }

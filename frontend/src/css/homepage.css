@@ -16,6 +16,7 @@
     flex-direction: column;
     justify-content: center;
     padding-right: 10% !important;
+    padding-left: 1% !important;
 }
 
 .blog-col {

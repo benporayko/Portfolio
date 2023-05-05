@@ -43,7 +43,7 @@ const Home = () => {
                             <div className="card mb-3">
                                 <div className="card-header">
                                     <div className="row">
-                                        <div className="col-6">
+                                        <div className="col-6 align-self-center">
                                             <h5>Latest Blog post</h5>
                                         </div>
                                         <div className="col-6 text-end">
@@ -60,7 +60,7 @@ const Home = () => {
                                     <div>
                                         {newestPost.publicUrl != null && <HeroImage newestPost={newestPost}></HeroImage>}
                                     </div>
-                                    <h3 className="card-subtitle">
+                                    <h3 className="card-subtitle mt-1 mb-1">
                                         {newestPost.subtitle}
                                     </h3>
                                     <p className="card-text blog-body-text">

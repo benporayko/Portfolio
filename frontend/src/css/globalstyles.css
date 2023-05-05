@@ -1,0 +1,12 @@
+body {
+    background: url(https://storage.googleapis.com/ben-porayko/images/background-images/adrien-olichon-RCAhiGJsUUE-unsplash.jpg);
+    background-attachment: fixed !important;
+    background-size: cover !important;
+    background-position: center top !important;
+}
+h1 {
+    font-family: 'Abril Fatface', cursive;
+}
+p {
+    font-family: 'Lato', sans-serif;
+}

@@ -4,6 +4,7 @@ import BlogDataService from '../services/blogService';
 import { retrievePosts } from "../services/blogPostUtils";
 
 import "../css/blogpage.css"
+import "../css/globalstyles.css"
 import { Link, useNavigate } from "react-router-dom";
 import HeroImage from "./HeroImage";
 import NavBar from "./NavBar";

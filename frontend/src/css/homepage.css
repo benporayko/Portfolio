@@ -1,0 +1,21 @@
+.title-text {
+    color: #FF2E63;
+}
+
+.title-text-secondary {
+    color: #EAEAEA;
+}
+
+.title-text-col {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.blog-col {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

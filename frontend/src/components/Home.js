@@ -32,9 +32,12 @@ const Home = () => {
                     <NavBar></NavBar>
                     <div className="row">
                         <div className="col-lg-7 title-text-col">
-                            <h2 className="title-text-secondary">My Name Is</h2>
-                            <h1 className="title-text">Ben Porayko</h1>
-                            <h2 className="title-text-secondary">I'm a full stack Software Developer.</h2>
+                            <h2 className="title-text-secondary title-text-font">My Name Is</h2>
+                            <h1 className="title-text title-text-font">Ben Porayko.</h1>
+                            <h2 className="title-text-secondary">
+                                I'm a forward-thinking Full Stack Software Developer with a keen eye for detail and design.
+                                Welcome to my portfolio.
+                            </h2>
                         </div>
                         <div className="col-lg-5 align-self-center text-lg-start">
                             <div className="card mb-3">
@@ -82,13 +85,14 @@ const Home = () => {
                         <div class="col-xs-12">
                             <hr></hr>
                         </div>
+                    </div>
                         <div className="row">
                             <div className="col-md-2"></div>
                             <div className="col-md-8">
                                 <div className="card bg-dark text-white p-3">
                                     <div className="card-title">
                                         <div className="col-xs-12 title-text">
-                                            <h1>About Me</h1>
+                                            <h1 className="title-text-font">About Me</h1>
                                         </div>
                                     </div>
                                     <div className="col-xs-12">
@@ -102,9 +106,8 @@ const Home = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-md-2"></div>
+                            <div className="col-md-2 ml-0"></div>
                         </div>
-                    </div>
                 </div>
             </div>
             <div className="skill-content">
@@ -114,6 +117,86 @@ const Home = () => {
                             <hr></hr>
                         </div>
                     </div>
+                    <div className="row">
+                            <div className="col-md-2"></div>
+                            <div className="col-md-8">
+                                <div className="card bg-dark text-white p-3">
+                                    <div className="card-title">
+                                        <div className="col-xs-12 title-text alt-head">
+                                            <h1 className="title-text-font">Skills</h1>
+                                        </div>
+                                    </div>
+                                    <div className="card-body">
+                                        <div className="row">
+                                            <div className="col-lg-3 col-md-4 col-6 skill-col">   
+                                                <i className="devicon-html5-plain colored skill-icon"></i>
+                                                <p>HTML</p>
+                                            </div>
+                                            <div className="col-lg-3 col-md-4 col-6 skill-col"> 
+                                                <i className="devicon-css3-plain colored skill-icon"></i>
+                                                <p>CSS</p>
+                                            </div>
+                                            <div className="col-lg-3 col-md-4 col-6 skill-col">
+                                                <i className="devicon-javascript-plain colored skill-icon"></i>
+                                                <p>JavaScript</p>
+                                            </div>
+                                            <div className="col-lg-3 col-md-4 col-6 skill-col">
+                                                <i className="devicon-java-plain colored skill-icon"></i>
+                                                <p>Java</p>
+                                            </div>
+                
+                                            <div className="col-lg-3 col-md-4 col-6 skill-col">     
+                                                <i className="devicon-react-original colored skill-icon"></i>
+                                                <p>React</p>
+                                            </div>
+                                            <div className="col-lg-3 col-md-4 col-6 skill-col"> 
+                                                <i className="devicon-bootstrap-plain colored skill-icon"></i>
+                                                <p>Bootstrap</p>
+                                            </div>
+                                            <div className="col-lg-3 col-md-4 col-6 skill-col">
+                                                <i className="devicon-spring-plain colored skill-icon"></i>
+                                                <p>Spring</p>
+                                            </div>
+                                            <div className="col-lg-3 col-md-4 col-6 skill-col">
+                                                <i className="devicon-oracle-original colored skill-icon"></i>
+                                                <p>SQL/PLSQL</p>
+                                            </div>
+                
+                                            <div className="col-lg-3 col-md-4 col-6 skill-col">     
+                                                <i className="devicon-mysql-plain colored skill-icon"></i>
+                                                <p>MySQL</p>
+                                            </div>
+                                            <div className="col-lg-3 col-md-4 col-6 skill-col"> 
+                                                <i className="devicon-git-plain colored skill-icon"></i>
+                                                <p>Git</p>
+                                            </div>
+                                            <div className="col-lg-3 col-md-4 col-6 skill-col">
+                                                <i className="devicon-xd-plain colored skill-icon"></i>
+                                                <p>Adobe Xd</p>
+                                            </div>
+                                            <div className="col-lg-3 col-md-4 col-6 skill-col">
+                                                <i className="devicon-vscode-plain colored skill-icon"></i>
+                                                <p>VSCode</p>
+                                            </div>
+                                            <div className="col-lg-3 col-md-4 col-6 skill-col">
+                                                <i class="devicon-mongodb-plain colored skill-icon"></i>
+                                                <p>MongoDB</p>
+                                            </div>
+                                            <div className="col-lg-3 col-md-4 col-6 skill-col">
+                                                <i class="devicon-nodejs-plain colored skill-icon"></i>
+                                                <p>Node.js</p>
+                                            </div>
+                                            <div className="col-lg-3 col-md-4 col-6 skill-col">
+                                                <i class="devicon-express-original colored skill-icon"></i>
+                                                <p>Express</p>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-md-2"></div>
+                        </div>
                 </div>
             </div>
         </div>

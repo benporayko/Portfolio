@@ -6,11 +6,16 @@
     color: #EAEAEA;
 }
 
+.title-text-font {
+    font-family: 'Abril Fatface', cursive;
+}
+
 .title-text-col {
     height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    padding-right: 10% !important;
 }
 
 .blog-col {
@@ -26,4 +31,12 @@
 
 .info-text {
     font-size: large;
+}
+
+.skill-col {
+    text-align: center;
+}
+.skill-icon {
+    /* font-size: calc(2rem + 7vw); */
+    font-size: 100px;
 }

@@ -104,7 +104,7 @@ const BlogPage = props => {
             <div className="container-xxl mt-3">
                 <div className="row">
                     <div className="col mb-3 text-end">
-                        <h4 style={{display: "inline", textAlign: "center"}}>Filter by Tag: </h4>
+                        <h4 className ="title-text-secondary" style={{display: "inline", textAlign: "center"}}>Filter by Tag: </h4>
                         <button className="btn btn-primary ms-1 mt-1" value="all" onClick={tagButtonHandler}>All</button>
                         {
                             sortedTags.map((x, index) => {

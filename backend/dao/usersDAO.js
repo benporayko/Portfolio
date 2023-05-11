@@ -16,7 +16,8 @@ export default class UsersDAO {
             username: username.toLowerCase(),
             email: email.toLowerCase(),
             password: password,
-            role: "admin"
+            // admin role was hardcoded to first user, elaborate on functionality once registration system is implemented
+            role: "regular"
         });
         await user.save();
     }

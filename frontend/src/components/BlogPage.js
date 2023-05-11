@@ -22,7 +22,7 @@ const BlogPage = props => {
     useEffect(() => {
         const fetchData = async () => {
             const filteredArray = await retrievePosts();
-            console.log(filteredArray);
+            // console.log(filteredArray);
             setListOfPosts(filteredArray);
             // keeps a list of all posts to refer to in case listOfPosts has been filtered
             setAllPosts(filteredArray);
@@ -71,7 +71,7 @@ const BlogPage = props => {
         // sort the array with the most popular tags at the beginning
         const tagCounters = {};
 
-        console.log(posts)
+        // console.log(posts)
 
         posts.forEach(post => {
             post.tags.forEach(tag => {
@@ -109,7 +109,7 @@ const BlogPage = props => {
                         {
                             sortedTags.map((x, index) => {
                                 if (tagCount < 4) {
-                                    console.log(tagCount);
+                                    // console.log(tagCount);
                                     tagCount++;
                                     return <button className="btn btn-primary ms-1 mt-1" value={x.name} onClick={tagButtonHandler}>{x.name}</button>
                                 }

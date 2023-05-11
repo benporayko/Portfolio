@@ -106,6 +106,7 @@ const EditPost = () => {
         
         if (postToEdit != null) {
             try {
+                console.log(localStorage.getItem("token"));
                 BlogDataService.updatePost(formData)
                     .then(response => {
                         console.log(response.data);

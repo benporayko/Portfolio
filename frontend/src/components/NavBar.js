@@ -17,7 +17,7 @@ const NavBar = () => {
         const fetchUserData = async () => {
             let isUserLoggedIn = await BlogDataService.isUserAuth()
                 .then(response => {
-                    console.log(response.data);
+                    // console.log(response.data);
                     setUserName(response.data.username);
                 })
         }

@@ -42,6 +42,7 @@ export default class UsersCtrl {
                             const payload = {
                                 id: user[0]._id,
                                 username: user[0].username,
+                                role: user[0].role
                             }
                             jwt.sign(
                                 payload,

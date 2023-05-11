@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import NavBar from "./NavBar";
 import BlogDataService from "../services/blogService";
 
 const Login = () => {
@@ -32,6 +33,7 @@ const Login = () => {
 
     return (
         <div className="container-fluid">
+            <NavBar></NavBar>
             <div className="row">
                 <div className="col-md-2"></div>
                 <div className="col-md-8">
@@ -40,6 +42,9 @@ const Login = () => {
                             <h1>Login</h1>
                         </div>
                         <div className="card-body">
+                            <div className="card-text">
+                                <p style={{color: "red"}}>Registration functionality is currently not fully implemented. A future version of this website will include an account system with the ability to comment on blog posts.</p>
+                            </div>
                             <form onSubmit={submitHandler}>
                                 <label htmlFor="userInput">Username:</label>
                                 <input className="form-control" type="text" id="userInput" onChange={(event) => setUserName(event.target.value)}></input>

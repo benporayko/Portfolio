@@ -14,6 +14,15 @@ const BlogPage = props => {
     const [allPosts, setAllPosts] = useState([]);
     const [newestPost, setNewestPost] = useState([]);
     const [sortedTags, setSortedTags] = useState([]);
+    const [isAdmin, setIsAdmin] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1);
+    const postsPerPage = 5;
+
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const currentPosts = listOfPosts
+        .filter((x) => x.published === true)
+        .slice(indexOfFirstPost, indexOfLastPost);
 
     const navigate = useNavigate();
 
@@ -28,6 +37,13 @@ const BlogPage = props => {
             setAllPosts(filteredArray);
             setNewestPost(filteredArray[0]);
             populateTags(filteredArray);
+            await BlogDataService.isUserAuth()
+                .then(response => {
+                    // console.log(response.data);
+                    if (response.data.role == 'admin') {
+                        setIsAdmin(true);
+                    }
+                })
         }
         fetchData();
     }, []);
@@ -41,6 +57,24 @@ const BlogPage = props => {
     const clickHandler = (clicked) => {
         setNewestPost(clicked);
     }
+
+    const renderPosts = () => {
+        return currentPosts.map((post, index) => (
+            <div className="card mb-2 side-cards" onClick={function() {clickHandler(post)}}>
+                <div className="card-body">
+                    <h4 className="card-title">{post.title}</h4>
+                        <div className="card-subtitle">{
+                            post.tags.map((element, index) => {
+                                // formats tags that are displayed, places "Tags: " before and commas after each word aside from the last
+                                return(<div style={{display: "inline"}}>{index == 0 ? "Tags: " : ""}{element}{index != post.tags.length - 1 ? ", " : ""}</div>)
+                            })
+                        }</div>
+                    <h5 className="card-subtitle text-end">{dayjs(post.date).format('YYYY-MM-DD')}</h5>
+                    <h5 className="card-text">{post.subtitle}</h5>
+                </div>
+            </div>
+        ));
+    };
 
     const tagButtonHandler = (event) => {
         const selectedTag = event.target.value;
@@ -60,7 +94,15 @@ const BlogPage = props => {
             });
             setListOfPosts(tempArray);
         }
+        setCurrentPage(1);
+    }
 
+    const handlePreviousPage = () => {
+        setCurrentPage((prevPage) => prevPage - 1);
+    }
+
+    const handleNextPage = () => {
+        setCurrentPage((prevPage) => prevPage + 1);
     }
 
     const populateTags = (posts) => {
@@ -138,14 +180,23 @@ const BlogPage = props => {
                             </div>
                             
                             <p className="card-text blog-body-text">{newestPost.body}</p>
-                            <Link to={"/edit/?" + newestPost._id}>
-                                <button type="button" className="btn btn-primary">Edit Post</button>
-                            </Link>
+                            {isAdmin ? 
+                                <Link to={"/edit/?" + newestPost._id}>
+                                    <button type="button" className="btn btn-primary">Edit Post</button>
+                                </Link>
+                                : ""
+                            }
+                            
                         </div>
                     </div>
                 </div>
                 <div className="col-md-4">
-                    {
+                    <div className="row">
+                        <button className="btn btn-primary col m-2" disabled={currentPage === 1} onClick={handlePreviousPage}>Previous Page</button>
+                        <button className="btn btn-primary col m-2" disabled={currentPosts.length < postsPerPage} onClick={handleNextPage}>Next Page</button>
+                    </div>
+                    {renderPosts()}
+                    {/* {
                     listOfPosts.map((x, index) => {
                         if (x.published == true) {
                             // add pagination functionality so page isn't too long
@@ -163,7 +214,7 @@ const BlogPage = props => {
                             </div>
                         </div>)
                         }
-                    })}
+                    })} */}
                 </div>
             </div>
         </div>

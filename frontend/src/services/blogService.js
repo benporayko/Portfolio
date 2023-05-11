@@ -1,4 +1,6 @@
 import http from "../http-common";
+import axios from "axios";
+
 
 class BlogDataService {
     getAll() {
@@ -15,6 +17,17 @@ class BlogDataService {
     }
     deletePost(data) {
         return http.post("/deletePost", data);
+    }
+    login(data) {
+        return http.post("/login", data);
+    }
+    isUserAuth(data) {
+        return axios.create({
+            baseURL: "http://localhost:5000/api/v1/portfolio",
+            headers: {
+                "x-access-token": localStorage.getItem("token")
+            }
+        }).get("/isUserAuth", data);
     }
 }
 

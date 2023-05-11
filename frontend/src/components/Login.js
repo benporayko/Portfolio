@@ -1,12 +1,33 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import BlogDataService from "../services/blogService";
 
 const Login = () => {
     const [username, setUserName] = useState("");
     const [password, setPassword] = useState("");
 
+    const navigate = useNavigate();
+
     const submitHandler = (event) => {
         event.preventDefault();
         
+        const formData = new FormData();
+        formData.append("username", username);
+        formData.append("password", password);
+
+        try {
+            BlogDataService.login(formData)
+                .then(response => {
+                    console.log(response.data);
+                    // in future, might be better to validate this on the backend
+                    if (response.data.token !== undefined) {
+                        localStorage.setItem("token", response.data.token)
+                        navigate("/");
+                    }
+                })
+        } catch (e) {
+            console.error(e);
+        }
     }
 
     return (

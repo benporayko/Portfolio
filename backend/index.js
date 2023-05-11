@@ -16,7 +16,8 @@ await mongoose.connect(
     {
         maxPoolSize: 50,
         wtimeoutMS: 2500,
-        useNewURlParser: true
+        useNewURlParser: true,
+        useUnifiedTopology: true
     }
 )
 .catch(err => {

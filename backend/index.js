@@ -13,6 +13,8 @@ dotenv.config()
 const MongoClient = mongodb.MongoClient;
 const port = process.env.PORT || 8000;
 
+app.use(express.static(path.join(__dirname, '../frontend/build')));
+
 // Connection to the database and starts up the server
 async function connectToDatabase() {
     try {
@@ -37,10 +39,8 @@ async function connectToDatabase() {
     
 }
 
-app.use(express.static(path.join(__dirname, './frontend/build')));
-
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, './frontend/build', 'index.html'));
-});
+    res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
+  });
 
 connectToDatabase();

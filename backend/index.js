@@ -6,6 +6,8 @@ const dotenv = require('dotenv');
 // import dotenv from "dotenv";
 const mongoose = require('mongoose');
 // import mongoose from "mongoose";
+const express = require('express');
+const path = require('path');
 
 dotenv.config()
 const MongoClient = mongodb.MongoClient;

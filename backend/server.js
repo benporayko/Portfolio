@@ -7,7 +7,6 @@ const cors = require('cors');
 const portfolio = require("./api/portfolio.route.js");
 // import bodyParser from "body-parser";
 const bodyParser = require('body-parser');
-const path = require('path');
 
 const app = express();
 

@@ -197,10 +197,12 @@ const BlogPage = props => {
                     </div>
                 </div>
                 <div className="col-md-4 d-none d-md-block">
-                    <div className="row">
-                        <button className="btn btn-primary col m-2" disabled={currentPage === 1} onClick={handlePreviousPage}>Previous Page</button>
-                        <button className="btn btn-primary col m-2" disabled={currentPosts.length < postsPerPage} onClick={handleNextPage}>Next Page</button>
-                    </div>
+                    {(allPosts.length > 5) ?
+                        <div className="row">
+                            <button className="btn btn-primary col m-2" disabled={currentPage === 1} onClick={handlePreviousPage}>Previous Page</button>
+                            <button className="btn btn-primary col m-2" disabled={currentPosts.length < postsPerPage} onClick={handleNextPage}>Next Page</button>
+                        </div>
+                    : ""}
                     {renderPosts()}
                 </div>
             </div>

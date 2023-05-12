@@ -6,7 +6,7 @@ const multer = require('multer');
 // import multer from "multer";
 const UsersCtrl = require("./users.controller.js");
 // import UsersCtrl from "./users.controller.js";
-const verifyJWT = require("../services/JWTservice.js");
+const { verifyJWT } = require("../services/JWTservice.js");
 // import { verifyJWT } from "../services/JWTservice.js";
 
 const router = express.Router();

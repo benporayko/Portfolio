@@ -4,7 +4,7 @@ const BlogPostsDAO = require("../dao/blogpostsDAO.js");
 const dotenv = require('dotenv');
 // import fs from "node:fs";
 const fs = require('node:fs');
-const Storage = require('@google-cloud/storage');
+const { Storage } = require('@google-cloud/storage');
 // import { Storage }  from "@google-cloud/storage"
 
 dotenv.config()

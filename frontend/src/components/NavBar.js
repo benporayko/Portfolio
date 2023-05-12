@@ -1,28 +1,14 @@
 import "../css/navbar.css"
-import React, { useEffect, useState } from 'react';
-import BlogDataService from "../services/blogService";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import React, { useContext } from 'react';
+import { Link } from "react-router-dom";
+import { AuthContext } from "../context/AuthProvider";
 
 const NavBar = () => {
-    const [username, setUserName] = useState(null);
+    const { logout, isLoggedIn } = useContext(AuthContext);
 
-    const navigate = useNavigate();
-
-    async function logout() {
-        localStorage.removeItem("token");
-        setUserName(null);
+    function handleLogout() {
+        logout();
     }
-
-    useEffect(() => {
-        const fetchUserData = async () => {
-            let isUserLoggedIn = await BlogDataService.isUserAuth()
-                .then(response => {
-                    // console.log(response.data);
-                    setUserName(response.data.username);
-                })
-        }
-        fetchUserData();
-    }, [username]);
 
     return (
         <div>
@@ -59,11 +45,11 @@ const NavBar = () => {
                             </li>
                         </Link>
                         {
-                            username ? 
+                            isLoggedIn ? 
                             <div>
                                 <Link className="link-text">
                                     <li className="nav-item">
-                                        <span className="nav-link" onClick={logout}>Logout</span>
+                                        <span className="nav-link" onClick={handleLogout}>Logout</span>
                                     </li>
                                 </Link>
                             </div>

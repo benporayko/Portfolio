@@ -5,16 +5,6 @@
     background-color: lightblue;
     cursor: pointer;
 }
-
-.image-container {
-    /* width: 100%; */
-    /* height: auto; */
-}
-
-.hero-image {
-    /* max-width: 100%;
-    height: auto; */
-}
 .blog-body-text {
     white-space: pre-line;
 }

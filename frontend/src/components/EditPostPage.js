@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import queryString from 'query-string';
 import BlogDataService from "../services/blogService";
 import { useNavigate } from "react-router-dom";
 import NavBar from "./NavBar";
+import { AuthContext } from "../context/AuthProvider";
 
 
 const EditPost = () => {
+    const { isLoggedIn } = useContext(AuthContext);
     const [title, setTitle] = useState("");
     const [subtitle, setSubtitle] = useState("");
     const [body, setBody] = useState("");
@@ -18,23 +20,24 @@ const EditPost = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (window.location.search != "" || null) {
+        if (!isLoggedIn) {
+            navigate("/login");
+        }
+        if (window.location.search !== "" || null) {
             const parsed = queryString.extract(window.location.search);
             console.log(parsed);
 
             BlogDataService.get(parsed)
                 .then(response => {
-                    // console.log(response.data[0]);
                     setPostToEdit(response.data[0]);
                     setTitle(response.data[0].title);
                     setSubtitle(response.data[0].subtitle);
                     setBody(response.data[0].body);
                     setPublished(response.data[0].published);
                     setTags(response.data[0].tags)
-                    // fix
-                    console.log((response.data[0].tags));
                 })
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const titleChangeHandler = (event) => {
@@ -68,7 +71,7 @@ const EditPost = () => {
     const deletePostHandler = (event) => {
         event.preventDefault();
 
-        if (postToEdit != "" || null) {
+        if (postToEdit !== "" || null) {
             try {
                 const formData = new FormData();
                 formData.append("id", postToEdit._id);
@@ -124,50 +127,63 @@ const EditPost = () => {
                 console.error(e)
             }
         }
-        // history.pushState("/");
         navigate("/blog");
     }
 
     return(
         <div className="container-fluid">
             <NavBar></NavBar>
-            <form onSubmit={submitFormHandler} encType="multipart/form-data">
-                <div className="row">
-                    <div className="col-sm-9">
-                        <label htmlFor="postTitle" className="form-label">Post Title</label>
-                        <input type="text" className="form-control" id="postTitle" value={title} onChange={titleChangeHandler}></input>
+            <div className="row">
+                <div className="col-md-2"></div>
+                <div className="col-md-8">
+                    <div className="card bg-dark text-white">
+                        <div className="card-body">
+                            <div className="card-title">
+                                <h1 className="title-text-font title-text">Edit/Create Post</h1>
+                            </div>
+                            <form onSubmit={submitFormHandler} encType="multipart/form-data">
+                                <div className="row">
+                                    <div className="col-sm-9">
+                                        <label htmlFor="postTitle" className="form-label">Post Title</label>
+                                        <input type="text" className="form-control" id="postTitle" value={title} onChange={titleChangeHandler}></input>
 
-                        <label htmlFor="postSubTitle" className="form-label">Post Subtitle</label>
-                        <input type="text" className="form-control" id="postSubTitle" value={subtitle} onChange={subtitleChangeHandler}></input>
+                                        <label htmlFor="postSubTitle" className="form-label">Post Subtitle</label>
+                                        <input type="text" className="form-control" id="postSubTitle" value={subtitle} onChange={subtitleChangeHandler}></input>
 
-                        <label htmlFor="postBody" className="form-label">Post Content</label>
-                        <textarea className="form-control" id="postBody" rows="3" value={body} onChange={bodyChangeHandler}></textarea>
+                                        <label htmlFor="postBody" className="form-label">Post Content</label>
+                                        <textarea className="form-control" id="postBody" rows="30" value={body} onChange={bodyChangeHandler}></textarea>
 
-                        <label htmlFor="postTags" className="form-label">Post Tags, seperate by commas</label>
-                        <input type="text" className="form-control" id="postTags" value={tags.toString()} onChange={tagsChangeHandler}></input>
+                                        <label htmlFor="postTags" className="form-label">Post Tags, seperate by commas</label>
+                                        <input type="text" className="form-control" id="postTags" value={tags.toString()} onChange={tagsChangeHandler}></input>
 
-                        <label htmlFor="postImage" className="form-label">Upload a Hero Image</label>
-                        <input type="file" className="form-control" id="postImage" onChange={fileChangeHandler}></input> 
-                    </div>
-                    <div className="col-sm-3">
-                        <label htmlFor="publishBool" className="form-label">Published?</label>
-                        <input type="checkbox" className="form-check-input" id="publishBool" checked={published} onChange={publishedChangeHandler}></input>
-                        <br></br>
+                                        <label htmlFor="postImage" className="form-label">Upload a Hero Image</label>
+                                        <input type="file" className="form-control" id="postImage" onChange={fileChangeHandler}></input> 
+                                    </div>
+                                    <div className="col-sm-3">
+                                        <label htmlFor="publishBool" className="form-label">Published?</label>
+                                        <input type="checkbox" className="form-check-input" id="publishBool" checked={published} onChange={publishedChangeHandler}></input>
+                                        <br></br>
                         
-                        <button type="submit" className="btn btn-primary">
-                        {
-                            postToEdit !== null || "" ? "Edit Post" : "Submit Post"
-                        }
-                        </button>
-                        {
-                            postToEdit !== null || "" ? 
-                            <div>
-                                <button type="button" className="btn btn-danger" onClick={deletePostHandler}>Delete Post</button>
-                            </div> : ""
-                        }
-                    </div> 
+                                        <button type="submit" className="btn btn-primary mb-2">
+                                        {
+                                            postToEdit !== null || "" ? "Edit Post" : "Submit Post"
+                                        }
+                                        </button>
+                                        {
+                                            postToEdit !== null || "" ? 
+                                            <div>
+                                                <button type="button" className="btn btn-danger" onClick={deletePostHandler}>Delete Post</button>
+                                            </div> : ""
+                                        }
+                                    </div> 
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-            </form>
+                <div className="col-md-2"></div>
+            </div>
+            
         </div>
     )
 }

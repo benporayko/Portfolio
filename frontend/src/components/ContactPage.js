@@ -18,7 +18,7 @@ const ContactPage = () => {
                                 <h3>Alternatively, I can be contacted on the following platform(s):</h3>
                                 <div className="col text-center">
                                         <Link to="https://www.linkedin.com/in/benporayko/" className="icon-link">
-                                            <i class="bi bi-linkedin skill-icon"></i>
+                                            <i className="bi bi-linkedin skill-icon"></i>
                                         </Link>
                                         <h5>LinkedIn</h5>
                                     </div>

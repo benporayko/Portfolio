@@ -12,7 +12,7 @@ export async function retrievePosts() {
                 }
             )
             // ensures that only posts marked as published appear on the blog page
-            let filterByPublished = sortedArray.filter(function(x) {return x.published == true });
+            let filterByPublished = sortedArray.filter(function(x) {return x.published === true });
             
             return filterByPublished;
     }

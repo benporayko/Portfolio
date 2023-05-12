@@ -10,7 +10,6 @@ class BlogDataService {
         return http.get(`/id/${id}`);
     }
     createPost(data) {
-        // return http.post("/edit", data);
         return axios.create({
             baseURL: "http://localhost:5000/api/v1/portfolio",
             headers: {
@@ -20,7 +19,6 @@ class BlogDataService {
         }).post("/edit", data);
     }
     updatePost(data) {
-        // return http.put("/edit", data);
         return axios.create({
             baseURL: "http://localhost:5000/api/v1/portfolio",
             headers: {
@@ -30,7 +28,6 @@ class BlogDataService {
         }).put("/edit", data);
     }
     deletePost(data) {
-        // return http.post("/deletePost", data);
         return axios.create({
             baseURL: "http://localhost:5000/api/v1/portfolio",
             headers: {
@@ -52,4 +49,6 @@ class BlogDataService {
     }
 }
 
-export default new BlogDataService();
+const dataService = new BlogDataService();
+
+export default dataService;

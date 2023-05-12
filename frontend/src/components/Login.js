@@ -1,13 +1,16 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useContext, useEffect } from "react";
 import NavBar from "./NavBar";
-import BlogDataService from "../services/blogService";
+import { AuthContext } from "../context/AuthProvider";
 
 const Login = () => {
+    const { login, invalidLoginMessage, clearInvalidMessage } = useContext(AuthContext);
     const [username, setUserName] = useState("");
     const [password, setPassword] = useState("");
 
-    const navigate = useNavigate();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    useEffect(() => {
+        clearInvalidMessage();
+    }, []);
 
     const submitHandler = (event) => {
         event.preventDefault();
@@ -16,19 +19,8 @@ const Login = () => {
         formData.append("username", username);
         formData.append("password", password);
 
-        try {
-            BlogDataService.login(formData)
-                .then(response => {
-                    console.log(response.data);
-                    // in future, might be better to validate this on the backend
-                    if (response.data.token !== undefined) {
-                        localStorage.setItem("token", response.data.token)
-                        navigate("/");
-                    }
-                })
-        } catch (e) {
-            console.error(e);
-        }
+        // use global state defined in AuthProvider
+        login(formData);
     }
 
     return (
@@ -52,6 +44,7 @@ const Login = () => {
                                 <input className="form-control" type="password" id="passwordInput" onChange={(event) => setPassword(event.target.value)}></input>
                                 <button type="submit" className="btn btn-primary mt-1">Submit</button>
                             </form>
+                            <p style={{color: "red"}}>{invalidLoginMessage}</p>
                         </div>
                     </div>
                 </div>

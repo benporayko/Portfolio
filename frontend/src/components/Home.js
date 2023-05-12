@@ -22,7 +22,6 @@ const Home = () => {
             setOpeningParagraph(arr[0]);
         }
         fetchData();
-        // let arr = (newestPost.body).split("\n");
     }, []);
 
     return (
@@ -82,7 +81,7 @@ const Home = () => {
             <div className="info-content">
                 <div className="container-fluid">
                     <div className="row">
-                        <div class="col-xs-12 d-flex justify-content-center">
+                        <div className="col-xs-12 d-flex justify-content-center">
                             <hr></hr>
                         </div>
                     </div>
@@ -116,13 +115,13 @@ const Home = () => {
                                 <div className="row">
                                     <div className="col-4 text-center">
                                         <Link to="https://github.com/benporayko" className="icon-link">
-                                            <i class="bi bi-github skill-icon"></i>
+                                            <i className="bi bi-github skill-icon"></i>
                                         </Link>
                                         <h5>GitHub</h5>
                                     </div>
                                     <div className="col-4 text-center">
                                         <Link to="https://www.linkedin.com/in/benporayko/" className="icon-link">
-                                            <i class="bi bi-linkedin skill-icon"></i>
+                                            <i className="bi bi-linkedin skill-icon"></i>
                                         </Link>
                                         <h5>LinkedIn</h5>
                                     </div>
@@ -142,7 +141,7 @@ const Home = () => {
             <div className="projects-content">
                 <div className="container-fluid">
                     <div className="row">
-                        <div class="col-xs-12 d-flex justify-content-center">
+                        <div className="col-xs-12 d-flex justify-content-center">
                             <hr></hr>
                         </div>
                     </div>
@@ -159,7 +158,7 @@ const Home = () => {
                                         <div className="col-xl-6 mb-2">
                                             <div className="card bg-light text-black h-100 d-flex flex-column mb-1">
                                                 <div className="aspect-ratio">
-                                                    <img className="card-img-top p-1 " src="https://storage.googleapis.com/ben-porayko/images/project-images/Blog_Project_Screenshot.png" alt="Blog Project Image"></img>
+                                                    <img className="card-img-top p-1 " src="https://storage.googleapis.com/ben-porayko/images/project-images/Blog_Project_Screenshot.png" alt="blog-project"></img>
                                                 </div>
                                                 <div className="card-body">
                                                 <div className="card-title">
@@ -169,12 +168,12 @@ const Home = () => {
                                                         </div>
                                                         <div className="col text-end">
                                                             <h4>
-                                                                <i class="devicon-mongodb-plain colored"></i>
-                                                                <i class="devicon-express-original colored"></i>
+                                                                <i className="devicon-mongodb-plain colored"></i>
+                                                                <i className="devicon-express-original colored"></i>
                                                                 <i className="devicon-react-original colored"></i>
-                                                                <i class="devicon-nodejs-plain colored"></i>
+                                                                <i className="devicon-nodejs-plain colored"></i>
                                                                 <i className="devicon-bootstrap-plain colored"></i>
-                                                                <i class="devicon-googlecloud-plain colored"></i>
+                                                                <i className="devicon-googlecloud-plain colored"></i>
                                                             </h4>
                                                         </div>
                                                     </div>
@@ -191,7 +190,7 @@ const Home = () => {
                                         <div className="col-xl-6 mb-2">
                                             <div className="card text-black h-100 d-flex flex-column mb-1">
                                                 <div className="aspect-ratio">
-                                                    <img className="card-img-top p-1" src="https://storage.googleapis.com/ben-porayko/images/project-images/Coming_Soon_Idea.jpg" alt="Coming Soon Idea Image"></img>
+                                                    <img className="card-img-top p-1" src="https://storage.googleapis.com/ben-porayko/images/project-images/Coming_Soon_Idea.jpg" alt="future-project"></img>
                                                 </div>
                                                 <div className="card-body">
                                                 <div className="card-title">
@@ -281,15 +280,15 @@ const Home = () => {
                                                 <p>VSCode</p>
                                             </div>
                                             <div className="col-lg-3 col-md-4 col-6 skill-col">
-                                                <i class="devicon-mongodb-plain colored skill-icon"></i>
+                                                <i className="devicon-mongodb-plain colored skill-icon"></i>
                                                 <p>MongoDB</p>
                                             </div>
                                             <div className="col-lg-3 col-md-4 col-6 skill-col">
-                                                <i class="devicon-nodejs-plain colored skill-icon"></i>
+                                                <i className="devicon-nodejs-plain colored skill-icon"></i>
                                                 <p>Node.js</p>
                                             </div>
                                             <div className="col-lg-3 col-md-4 col-6 skill-col">
-                                                <i class="devicon-express-original colored skill-icon"></i>
+                                                <i className="devicon-express-original colored skill-icon"></i>
                                                 <p>Express</p>
                                             </div>
                                         </div>

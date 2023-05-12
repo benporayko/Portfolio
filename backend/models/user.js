@@ -1,7 +1,7 @@
-import mongoose from "mongoose";
-const { Schema } = mongoose;
-// const mongoose = require('mongoose');
+// import mongoose from "mongoose";
 // const { Schema } = mongoose;
+const mongoose = require('mongoose');
+const Schema = require('mongoose');
 
 const user = new Schema({
     username: {

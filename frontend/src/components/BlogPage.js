@@ -47,13 +47,13 @@ const BlogPage = props => {
     const renderPosts = () => {
         // used to render the side cards
         return currentPosts.map((post, index) => (
-            <div className="card mb-2 side-cards" onClick={function() {clickHandler(post)}}>
+            <div key={index} className="card mb-2 side-cards" onClick={function() {clickHandler(post)}}>
                 <div className="card-body">
                     <h4 className="card-title">{post.title}</h4>
                         <div className="card-subtitle">{
                             post.tags.map((element, index) => {
                                 // formats tags that are displayed, places "Tags: " before and commas after each word aside from the last
-                                return(<div style={{display: "inline"}}>{index === 0 ? "Tags: " : ""}{element}{index !== post.tags.length - 1 ? ", " : ""}</div>)
+                                return(<div key={index} style={{display: "inline"}}>{index === 0 ? "Tags: " : ""}{element}{index !== post.tags.length - 1 ? ", " : ""}</div>)
                             })
                         }</div>
                     <h6 className="card-subtitle text-end">{dayjs(post.date).format('YYYY-MM-DD')}</h6>
@@ -148,12 +148,13 @@ const BlogPage = props => {
                             <button className="btn btn-primary ms-1 mt-1" value="all" onClick={tagButtonHandler}>All</button>
                         
                             {
+                                // currently x.name is unique, however it might be safer to assign a unique id to each tag in sortedTags in the future
                                 sortedTags.map((x, index) => {
                                     if (tagCount < 4) {
                                         tagCount++;
-                                        return <button className="btn btn-primary ms-1 mt-1" value={x.name} onClick={tagButtonHandler}>{x.name}</button>
+                                        return <button key={x.name} className="btn btn-primary ms-1 mt-1" value={x.name} onClick={tagButtonHandler}>{x.name}</button>
                                     } else {
-                                        return <div></div>
+                                        return <div key={x.name}></div>
                                     };
                                 })
                             }

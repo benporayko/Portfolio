@@ -16,6 +16,7 @@ const BlogPage = props => {
     const [sortedTags, setSortedTags] = useState([]);
     const [isAdmin, setIsAdmin] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
+    const [currentPostIndex, setCurrentPostIndex] = useState(0);
     const postsPerPage = 5;
 
     const indexOfLastPost = currentPage * postsPerPage;
@@ -37,6 +38,7 @@ const BlogPage = props => {
             setAllPosts(filteredArray);
             setNewestPost(filteredArray[0]);
             populateTags(filteredArray);
+            // console.log(filteredArray);
             await BlogDataService.isUserAuth()
                 .then(response => {
                     // console.log(response.data);
@@ -56,7 +58,13 @@ const BlogPage = props => {
 
     const clickHandler = (clicked) => {
         setNewestPost(clicked);
+        setCurrentPostIndex(allPosts.indexOf(clicked));
+
+        console.log(allPosts.indexOf(clicked));
     }
+
+    // set index of current post
+    // on click next/previous page buttons, display post with index - 1 or index + 1, if valid
 
     const renderPosts = () => {
         return currentPosts.map((post, index) => (
@@ -105,6 +113,18 @@ const BlogPage = props => {
         setCurrentPage((prevPage) => prevPage + 1);
     }
 
+    const handlePreviousPost = () => {
+        let index = currentPostIndex - 1;
+        setNewestPost(allPosts[index]);
+        setCurrentPostIndex(index);
+    }
+
+    const handleNextPost = () => {
+        let index = currentPostIndex + 1;
+        setNewestPost(allPosts[index]);
+        setCurrentPostIndex(index);
+    }
+
     const populateTags = (posts) => {
         // populate the tags with the most used tags
         // for each array of tags per object in the array allPosts,
@@ -146,23 +166,31 @@ const BlogPage = props => {
             <div className="container-xxl mt-3">
                 <div className="row">
                     <div className="col mb-3 text-end">
-                        <h4 className ="title-text-secondary" style={{display: "inline", textAlign: "center"}}>Filter by Tag: </h4>
-                        <button className="btn btn-primary ms-1 mt-1" value="all" onClick={tagButtonHandler}>All</button>
-                        {
-                            sortedTags.map((x, index) => {
-                                if (tagCount < 4) {
-                                    // console.log(tagCount);
-                                    tagCount++;
-                                    return <button className="btn btn-primary ms-1 mt-1" value={x.name} onClick={tagButtonHandler}>{x.name}</button>
-                                }
-                            })
-                        }
+                        <div className="d-none d-md-block">
+                            <h4 className ="title-text-secondary" style={{display: "inline", textAlign: "center"}}>Filter by Tag: </h4>
+                            <button className="btn btn-primary ms-1 mt-1" value="all" onClick={tagButtonHandler}>All</button>
+                        
+                            {
+                                sortedTags.map((x, index) => {
+                                    if (tagCount < 4) {
+                                        // console.log(tagCount);
+                                        tagCount++;
+                                        return <button className="btn btn-primary ms-1 mt-1" value={x.name} onClick={tagButtonHandler}>{x.name}</button>
+                                    }
+                                })
+                            }
+                        </div>
+                        
                         {/* <button className="btn btn-primary ms-1" value="retro" onClick={tagButtonHandler}>Retro</button>
                         <button className="btn btn-primary ms-1" value="jrpg" onClick={tagButtonHandler}>JRPG</button> */}
                     </div>
                 </div>
             <div className="row">
                 <div className="col-md-8">
+                    <div className="row d-md-none">
+                        <button className="btn btn-primary col m-2" disabled={currentPostIndex == 0} onClick={handlePreviousPost}>Previous Post</button>
+                        <button className="btn btn-primary col m-2" disabled={currentPostIndex == allPosts.length - 1} onClick={handleNextPost}>Next Post</button>
+                    </div>
                     <div className="card mb-3">
                         <div className="card-body">
                             <div className="row">
@@ -190,7 +218,7 @@ const BlogPage = props => {
                         </div>
                     </div>
                 </div>
-                <div className="col-md-4">
+                <div className="col-md-4 d-none d-md-block">
                     <div className="row">
                         <button className="btn btn-primary col m-2" disabled={currentPage === 1} onClick={handlePreviousPage}>Previous Page</button>
                         <button className="btn btn-primary col m-2" disabled={currentPosts.length < postsPerPage} onClick={handleNextPage}>Next Page</button>

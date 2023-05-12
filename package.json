@@ -5,9 +5,5 @@
   "dependencies": {
     "bootstrap": "^5.2.3",
     "react-router-dom": "^6.10.0"
-  },
-  "scripts": {
-    "start": "node backend/index.js",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install npm && run build"
   }
 }

@@ -1,4 +1,5 @@
-import User from "../models/user.js";
+// import User from "../models/user.js";
+const User = require("../models/user.js");
 
 export default class UsersDAO {
     static async getUserByUsername(username) {

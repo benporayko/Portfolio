@@ -2,7 +2,8 @@
 const express = require('express');
 // import cors from "cors";
 const cors = require('cors');
-import portfolio from "./api/portfolio.route.js"
+// import portfolio from "./api/portfolio.route.js"
+const portfolio = require("./api/portfolio.route.js");
 // import bodyParser from "body-parser";
 const bodyParser = require('body-parser');
 

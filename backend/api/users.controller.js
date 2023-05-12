@@ -1,4 +1,5 @@
-import UsersDAO from "../dao/usersDAO.js";
+// import UsersDAO from "../dao/usersDAO.js";
+const UsersDAO = require("../dao/usersDAO.js");
 const bcrypt = require('bcrypt');
 // import bcrypt from "bcrypt";
 const jwt = require('jsonwebtoken');

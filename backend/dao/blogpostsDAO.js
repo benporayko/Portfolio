@@ -1,4 +1,5 @@
-import BlogPost from "../models/blogpost.js";
+// import BlogPost from "../models/blogpost.js";
+const BlogPost = require("../models/blogpost.js");
 
 export default class BlogPostsDAO {
 

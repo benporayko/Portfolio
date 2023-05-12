@@ -1,10 +1,13 @@
 // import express from "express";
 const express = require('express');
-import BlogPostsCtrl from "./blogposts.controller.js";
+const BlogPostsCtrl = require("./blogposts.controller.js");
+// import BlogPostsCtrl from "./blogposts.controller.js";
 const multer = require('multer');
 // import multer from "multer";
-import UsersCtrl from "./users.controller.js";
-import { verifyJWT } from "../services/JWTservice.js";
+const UsersCtrl = require("./users.controller.js");
+// import UsersCtrl from "./users.controller.js";
+const verifyJWT = require("../services/JWTservice.js");
+// import { verifyJWT } from "../services/JWTservice.js";
 
 const router = express.Router();
 const authenticatedRoutes = express.Router();

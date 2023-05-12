@@ -1,4 +1,5 @@
-import BlogPostsDAO from "../dao/blogpostsDAO.js";
+// import BlogPostsDAO from "../dao/blogpostsDAO.js";
+const BlogPostsDAO = require("../dao/blogpostsDAO.js");
 // import dotenv from "dotenv";
 const dotenv = require('dotenv');
 // import fs from "node:fs";

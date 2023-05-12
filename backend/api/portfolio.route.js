@@ -1,8 +1,8 @@
-// import express from "express";
-const express = require('express');
+import express from "express";
+// const express = require('express');
 import BlogPostsCtrl from "./blogposts.controller.js";
-const multer = require('multer');
-// import multer from "multer";
+// const multer = require('multer');
+import multer from "multer";
 import UsersCtrl from "./users.controller.js";
 import { verifyJWT } from "../services/JWTservice.js";
 

@@ -1,3 +1,4 @@
+// import statements are changed to commonJS
 // import express from "express";
 const express = require('express');
 // import cors from "cors";

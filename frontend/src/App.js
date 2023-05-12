@@ -7,6 +7,7 @@ import EditPostPage from './components/EditPostPage';
 import BlogDataService from './services/blogService';
 import ContactPage from './components/ContactPage';
 import Login from './components/Login';
+import PageNotFound from './components/PageNotFound';
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
         <Route path="/edit/:id" element={<EditPostPage/>}></Route>
         <Route path="/contact" element={<ContactPage/>}></Route>
         <Route path="/login" element={<Login/>}></Route>
+        <Route path="*" element={<PageNotFound/>}></Route>
       </Routes>
     </div>
   );

@@ -41,3 +41,12 @@
     /* font-size: calc(2rem + 7vw); */
     font-size: 100px;
 }
+
+.icon-link {
+    text-decoration: none;
+}
+
+.aspect-ratio {
+    position: relative;
+    padding-bottom: 50%;
+}

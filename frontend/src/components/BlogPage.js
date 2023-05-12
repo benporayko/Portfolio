@@ -195,17 +195,19 @@ const BlogPage = props => {
                         <div className="card-body">
                             <div className="row">
                                 <div className="col-8">
-                                    <h1 className="card-title">{newestPost.title}</h1>
+                                    <h2 className="card-title title-text-font">{newestPost.title}</h2>
                                 </div>
                                 <div className="col-4">
                                     <h5 className="card-subtitle text-end">By: {newestPost.author}</h5>
-                                    <h5 className="card-subtitle text-end">{dayjs(newestPost.date).format('YYYY-MM-DD')}</h5>
                                 </div>
-                                <div>
-                                    {newestPost.publicUrl != null && <HeroImage newestPost={newestPost}></HeroImage>}
-                                </div>
-                                <h3 className="card-subtitle mb-2 mt-2 text-body-secondary">{newestPost.subtitle}</h3>
                             </div>
+                            <div className="row d-flex justify-content-right">
+                                <h6 className="card-subtitle text-end mt-1">{dayjs(newestPost.date).format('YYYY-MM-DD')}</h6>
+                            </div>
+                            <div className="row">
+                                {newestPost.publicUrl != null && <HeroImage newestPost={newestPost}></HeroImage>}
+                            </div>
+                            <h3 className="card-subtitle mb-2 mt-2 text-body-secondary">{newestPost.subtitle}</h3>
                             
                             <p className="card-text blog-body-text">{newestPost.body}</p>
                             {isAdmin ? 

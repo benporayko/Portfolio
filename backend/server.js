@@ -1,4 +1,4 @@
-import express from "express";
+const express = require('express');
 import cors from "cors";
 import portfolio from "./api/portfolio.route.js"
 import bodyParser from "body-parser";

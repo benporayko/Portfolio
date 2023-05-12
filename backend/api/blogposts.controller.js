@@ -20,7 +20,7 @@ const storage = new Storage({
 
 const BUCKET_NAME = 'ben-porayko';
 
-export default class BlogPostsCtrl {
+class BlogPostsCtrl {
 
     static async apiGetBlogPosts(req, res, next) {
         const blogPostList = await BlogPostsDAO.getBlogPosts();
@@ -174,3 +174,5 @@ export default class BlogPostsCtrl {
         }
     }
 }
+
+module.exports = BlogPostsCtrl;

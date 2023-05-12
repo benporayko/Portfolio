@@ -57,4 +57,4 @@ router.get("/isUserAuth", verifyJWT, (req, res) => {
 
 router.use(authenticatedRoutes);
 
-export default router;
+module.exports = router;

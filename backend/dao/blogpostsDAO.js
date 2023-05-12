@@ -1,7 +1,7 @@
 // import BlogPost from "../models/blogpost.js";
 const BlogPost = require("../models/blogpost.js");
 
-export default class BlogPostsDAO {
+class BlogPostsDAO {
 
     static async getBlogPosts() {
         const posts = await BlogPost.find();
@@ -55,3 +55,5 @@ export default class BlogPostsDAO {
     await blogPost.save();
     }
 }
+
+module.exports = BlogPostsDAO;

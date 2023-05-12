@@ -7,7 +7,7 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
-export async function verifyJWT(req,res,next) {
+async function verifyJWT(req,res,next) {
     // verifies JWT with secret value used to sign, also ensures it exists in the first place
     res.setHeader('Cache-Control', 'no-store');
     const token = req.headers["x-access-token"]?.split(' ')[1]
@@ -28,3 +28,5 @@ export async function verifyJWT(req,res,next) {
         res.json({message: "Incorrect Token Given or Token is Null", isLoggedIn: false})
     }
 }
+
+module.exports = { verifyJWT };

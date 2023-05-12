@@ -1,7 +1,7 @@
 // import User from "../models/user.js";
 const User = require("../models/user.js");
 
-export default class UsersDAO {
+class UsersDAO {
     static async getUserByUsername(username) {
         const user = await User.find({username: username});
         return user;
@@ -23,3 +23,5 @@ export default class UsersDAO {
         await user.save();
     }
 }
+
+module.exports = UsersDAO;

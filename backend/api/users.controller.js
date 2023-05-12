@@ -9,7 +9,7 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
-export default class UsersCtrl {
+class UsersCtrl {
 
     static async apiRegisterUser(req, res, next) {
         const user = req.body;
@@ -71,3 +71,5 @@ export default class UsersCtrl {
     }
 
 }
+
+module.exports = UsersCtrl;

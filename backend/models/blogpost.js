@@ -19,4 +19,5 @@ const blogpost = new Schema({
 
 const BlogPost = mongoose.model('BlogPost', blogpost);
 
-export default BlogPost;
+// export default BlogPost;
+module.exports = BlogPost;

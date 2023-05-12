@@ -21,11 +21,5 @@ app.use(express.json());
 app.use("/api/v1/portfolio", portfolio);
 app.use("*", (req, res) => res.status(404).json({ error: "not found"}))
 
-app.use(express.static(path.join(__dirname, 'frontend/build')));
-
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'frontend/build', 'index.html'));
-});
-
 // export default app;
 module.exports = app;

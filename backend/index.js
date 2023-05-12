@@ -1,4 +1,5 @@
 // import app from "./server.js";
+const app = require("./server.js");
 const mongodb = require('mongodb');
 // import mongodb from "mongodb";
 const dotenv = require('dotenv');

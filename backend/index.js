@@ -12,21 +12,27 @@ const MongoClient = mongodb.MongoClient;
 const port = process.env.PORT || 8000;
 
 // Connection to the database and starts up the server
-await mongoose.connect(
-    process.env.PORTFOLIO_DB_URI,
-    {
-        maxPoolSize: 50,
-        wtimeoutMS: 2500,
-        useNewURlParser: true,
-        useUnifiedTopology: true
+async function connectToDatabase() {
+    try {
+        await mongoose.connect(
+            process.env.PORTFOLIO_DB_URI,
+            {
+                maxPoolSize: 50,
+                wtimeoutMS: 2500,
+                useNewUrlParser: true,
+                useUnifiedTopology: true
+            }
+        )
+        .then(async client => {
+            app.listen(port, () => {
+                console.log(`listening on port ${port}`);
+            })
+        })
+    } catch (err) {
+        console.error(err.stack);
+        process.exit(1);
     }
-)
-.catch(err => {
-    console.error(err.stack);
-    process.exit(1);
-})
-.then(async client => {
-    app.listen(port, () => {
-        console.log(`listening on port ${port}`);
-    })
-})
+    
+}
+
+connectToDatabase();

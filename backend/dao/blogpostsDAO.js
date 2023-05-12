@@ -1,6 +1,4 @@
-import mongodb from "mongodb";
 import BlogPost from "../models/blogpost.js";
-let blogposts;
 
 export default class BlogPostsDAO {
 

@@ -88,14 +88,12 @@ export default class BlogPostsCtrl {
     static async apiDeleteBlogPost(req, res, next) {
         if (req.user.role == 'admin') {
             try {
-                // console.log(req.body.id);
                 const id = req.body.id;
                 // gets publicUrl, then uses the delete method of the bucket object to delete the image from google cloud storage
                 const blogPost = await BlogPostsDAO.getBlogPostById(id);
                 const publicUrl = blogPost[0].publicUrl;
                 // decodeURIComponent returns the URL in the proper format
                 const fileName = decodeURIComponent(publicUrl).substring(decodeURIComponent(publicUrl).lastIndexOf('/') + 1);
-                console.log(decodeURIComponent(publicUrl).substring(decodeURIComponent(publicUrl).lastIndexOf('/') + 1));
                 const bucket = storage.bucket(BUCKET_NAME);
                 await bucket.file(`images/hero-images/${fileName}`).delete();
                 await BlogPostsDAO.deleteBlogPostById(id);
@@ -110,9 +108,6 @@ export default class BlogPostsCtrl {
     }
 
     static apiUpdateBlogPost = async(req, res, next) => {
-        // console.log(req.body);
-        console.log("test");
-        console.log(req.user.role + " is an admin")
         if (req.user.role == "admin") {
             try {
                 const id = req.body.id;

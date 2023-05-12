@@ -42,38 +42,6 @@ authenticatedRoutes.put("/edit", upload.single('file'), async (req, res, next) =
     }
 })
 
-router
-    .route("/edit")
-    // .post(upload.single('file'), verifyJWT, async (req, res, next) => {
-    //     try {
-    //         await BlogPostsCtrl.apiCreateNewPost(req, res, next);
-    //     } catch (e) {
-    //         console.error(e);
-    //         res.status(500).json({ error: 'Internal Server Error'});
-    //     }
-    //     })
-    // .delete(BlogPostsCtrl.apiDeleteBlogPost)
-    // .put(upload.single('file'), async (req, res, next) => {
-    //     try {
-    //         await verifyJWT(req, res, async () => {
-    //             await BlogPostsCtrl.apiUpdateBlogPost(req, res, next);
-    //         })
-    //     } catch (e) {
-    //         console.error(e);
-    //         res.status(500).json({ error: 'Internal Server Error'});
-    //     }
-    // });
-
-    // upload.none() allows multipart/form-data to be handled without files
-// router.route("/deletePost").post(upload.none(), verifyJWT, async (req, res, next) => {
-//     try {
-//         await BlogPostsCtrl.apiDeleteBlogPost(req, res, next);
-//     } catch (e) {
-//         console.error(e);
-//         res.status(500).json({ error: 'Internal Server Error'});
-//     }
-// });
-
 router.route("/register").post(UsersCtrl.apiRegisterUser);
 router.route("/login").post(upload.none(), UsersCtrl.apiLoginUser);
 

@@ -1,14 +1,20 @@
 import { useState, useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import NavBar from "./NavBar";
 import { AuthContext } from "../context/AuthProvider";
 
 const Login = () => {
-    const { login, invalidLoginMessage, clearInvalidMessage } = useContext(AuthContext);
+    const { login, invalidLoginMessage, clearInvalidMessage, isLoggedIn } = useContext(AuthContext);
     const [username, setUserName] = useState("");
     const [password, setPassword] = useState("");
 
+    const navigate = useNavigate();
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
+        if (isLoggedIn) {
+            navigate("/");
+        }
         clearInvalidMessage();
     }, []);
 

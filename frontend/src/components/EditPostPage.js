@@ -7,7 +7,7 @@ import { AuthContext } from "../context/AuthProvider";
 
 
 const EditPost = () => {
-    const { isLoggedIn } = useContext(AuthContext);
+    const { isLoggedIn, role } = useContext(AuthContext);
     const [title, setTitle] = useState("");
     const [subtitle, setSubtitle] = useState("");
     const [body, setBody] = useState("");
@@ -22,6 +22,9 @@ const EditPost = () => {
     useEffect(() => {
         if (!isLoggedIn) {
             navigate("/login");
+        }
+        else if (role !== 'admin') {
+            navigate("/");
         }
         if (window.location.search !== "" || null) {
             const parsed = queryString.extract(window.location.search);

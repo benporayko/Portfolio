@@ -30,6 +30,7 @@ const AuthProvider = ({ children }) => {
     }, []);
 
     const login = async (formData) => {
+        if (!isLoggedIn) {
             try {
                 const response = await BlogDataService.login(formData);
                 if (response.data.token !== undefined) {
@@ -50,6 +51,9 @@ const AuthProvider = ({ children }) => {
             } catch (e) {
                 console.error(e);
             }
+        } else {
+            navigate("/");
+        }
     };
 
     const logout = () => {

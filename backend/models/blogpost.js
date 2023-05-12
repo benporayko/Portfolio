@@ -1,6 +1,6 @@
-// import mongoose, { Schema } from "mongoose";
-const mongoose = require('mongoose');
-const { Schema } = mongoose;
+import mongoose, { Schema } from "mongoose";
+// const mongoose = require('mongoose');
+// const { Schema } = mongoose;
 
 const blogpost = new Schema({
     title: String,

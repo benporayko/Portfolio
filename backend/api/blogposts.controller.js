@@ -8,6 +8,7 @@ const { Storage } = require('@google-cloud/storage');
 // import { Storage }  from "@google-cloud/storage"
 
 dotenv.config()
+// changing this for production
 const credentials = JSON.parse(fs.readFileSync(process.env.GOOGLE_APPLICATION_CREDENTIALS));
 
 const storage = new Storage({

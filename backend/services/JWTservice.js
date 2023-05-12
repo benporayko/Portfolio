@@ -1,6 +1,9 @@
-import jwt from "jsonwebtoken";
-import { promisify } from "util";
-import dotenv from "dotenv";
+// import jwt from "jsonwebtoken";
+const jwt = require('jsonwebtoken');
+const { promisify } = require('util');
+// import { promisify } from "util";
+const dotenv = require('dotenv');
+// import dotenv from "dotenv";
 
 dotenv.config();
 

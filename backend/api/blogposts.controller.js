@@ -1,9 +1,8 @@
 import BlogPostsDAO from "../dao/blogpostsDAO.js";
-import dotenv from "dotenv";
-import multer from "multer";
-import fs from "node:fs";
-
-import { Storage }  from "@google-cloud/storage"
+const dotenv = require('dotenv');
+const fs = require('node:fs');
+const Storage = require('@google-cloud/storage');
+// import { Storage }  from "@google-cloud/storage"
 
 dotenv.config()
 const credentials = JSON.parse(fs.readFileSync(process.env.GOOGLE_APPLICATION_CREDENTIALS));

@@ -1,7 +1,10 @@
 import UsersDAO from "../dao/usersDAO.js";
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
-import dotenv from "dotenv";
+const bcrypt = require('bcrypt');
+// import bcrypt from "bcrypt";
+const jwt = require('jsonwebtoken');
+// import jwt from "jsonwebtoken";
+const dotenv = require('dotenv');
+// import dotenv from "dotenv";
 
 dotenv.config();
 

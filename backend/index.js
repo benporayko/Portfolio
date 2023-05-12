@@ -1,10 +1,10 @@
 import app from "./server.js";
-import mongodb from "mongodb";
-import dotenv from "dotenv";
-import mongoose from "mongoose";
-import BlogPost from "./models/blogpost.js";
-import User from "./models/user.js";
-import BlogPostsDAO from "./dao/blogpostsDAO.js";
+const mongodb = require('mongodb');
+// import mongodb from "mongodb";
+const dotenv = require('dotenv');
+// import dotenv from "dotenv";
+const mongoose = require('mongoose');
+// import mongoose from "mongoose";
 
 dotenv.config()
 const MongoClient = mongodb.MongoClient;

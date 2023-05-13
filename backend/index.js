@@ -15,6 +15,13 @@ const port = process.env.PORT || 8000;
 
 app.use(express.static(path.join(__dirname, "../frontend/build")));
 
+app.get('/', function (req, res) {
+    console.log('Route handler for "/" is executed');
+    res.sendFile(path.join(__dirname, "../frontend/build", "index.html"));
+    console.log(res.sendFile(path.join(__dirname, "../frontend/build", "index.html")));
+    console.log(__dirname);
+  });
+
 // Connection to the database and starts up the server
 async function connectToDatabase() {
     try {
@@ -38,11 +45,5 @@ async function connectToDatabase() {
     }
     
 }
-
-app.get('/', function (req, res) {
-    res.sendFile(path.join(__dirname, "../frontend/build", "index.html"));
-    console.log(res.sendFile(path.join(__dirname, "../frontend/build", "index.html")));
-    console.log(__dirname);
-  });
 
 connectToDatabase();

@@ -21,7 +21,7 @@ app.use(express.static(path.join(__dirname, "frontend/build")));
 //     next();
 //   });
 app.get('*.js', function(req, res, next) {
-    res.set('Content-Type', 'text/javascript');
+    res.set('Content-Type', 'application/javascript');
     next();
   });
 

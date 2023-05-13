@@ -15,11 +15,21 @@ const port = process.env.PORT || 8000;
 
 app.use(express.static(path.join(__dirname, "frontend/build")));
 
-// prevents MIME type mismatch issues
-app.use((req, res, next) => {
-    res.setHeader('X-Content-Type-Options', 'nosniff');
+// // prevents MIME type mismatch issues
+// app.use((req, res, next) => {
+//     res.setHeader('X-Content-Type-Options', 'nosniff');
+//     next();
+//   });
+app.get('*.js', function(req, res, next) {
+    res.set('Content-Type', 'text/javascript');
     next();
   });
+
+app.get('*.css', function(req, res, next) {
+    res.set('Content-Type', 'text/css');
+    next();
+});
+  
 
 app.get("*", (req, res,) => {
     // res.setHeader('X-Content-Type-Options', 'nosniff');

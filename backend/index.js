@@ -13,15 +13,17 @@ dotenv.config()
 const MongoClient = mongodb.MongoClient;
 const port = process.env.PORT || 8000;
 
-app.use(express.static(path.join(__dirname, "frontend/build/static")));
+app.use(express.static(path.join(__dirname, "frontend/build")));
 
 // // prevents MIME type mismatch issues
 // app.use((req, res, next) => {
 //     res.setHeader('X-Content-Type-Options', 'nosniff');
 //     next();
 //   });
+app.set
 app.get('*.js', function(req, res, next) {
     res.set('Content-Type', 'application/javascript');
+    
     next();
   });
 
@@ -35,11 +37,24 @@ app.get('*.css', function(req, res, next) {
 // })
   
 
-app.get("/", (req, res,) => {
+// app.get("/", (req, res,) => {
+//     // res.setHeader('X-Content-Type-Options', 'nosniff');
+//     res.sendFile(path.resolve(__dirname, "..", "frontend", "build", "index.html"));
+//     console.log('Route handler for "/" is executed');
+//   });
+
+app.get("*", (req, res) => {
     // res.setHeader('X-Content-Type-Options', 'nosniff');
-    res.sendFile(path.resolve(__dirname, "..", "frontend", "build", "index.html"));
+    const filePath = path.resolve(__dirname, "..", "frontend", "build", req.url.slice(1));
+    res.sendFile(filePath, (err) => {
+        if (err) {
+            console.error(err);
+            res.status(404).send("File not found");
+        }
+    })
+    // res.sendFile(path.resolve(__dirname, "..", "frontend", "build", "index.html"));
     console.log('Route handler for "/" is executed');
-  });
+});
 
 // Connection to the database and starts up the server
 async function connectToDatabase() {

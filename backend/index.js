@@ -15,7 +15,7 @@ const port = process.env.PORT || 8000;
 
 app.use(express.static(path.join(__dirname, "../frontend/build")));
 
-app.get('/', function (req, res) {
+app.get('*', function (req, res, next) {
     console.log('Route handler for "/" is executed');
     res.sendFile(path.join(__dirname, "../frontend/build", "index.html"));
     console.log(res.sendFile(path.join(__dirname, "../frontend/build", "index.html")));

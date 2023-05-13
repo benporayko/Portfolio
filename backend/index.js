@@ -15,15 +15,11 @@ const port = process.env.PORT || 8000;
 
 app.use(express.static(path.join(__dirname, "frontend/build")));
 
-// // prevents MIME type mismatch issues
-// app.use((req, res, next) => {
-//     res.setHeader('X-Content-Type-Options', 'nosniff');
-//     next();
-//   });
-app.set
+/* 
+    Handles MIME type mismatch
+*/
 app.get('*.js', function(req, res, next) {
     res.set('Content-Type', 'application/javascript');
-    
     next();
   });
 
@@ -32,21 +28,10 @@ app.get('*.css', function(req, res, next) {
     next();
 });
 
-// app.get('/static', function(req, res, next) {
-
-// })
-  
-
-// app.get("/", (req, res,) => {
-//     // res.setHeader('X-Content-Type-Options', 'nosniff');
-//     res.sendFile(path.resolve(__dirname, "..", "frontend", "build", "index.html"));
-//     console.log('Route handler for "/" is executed');
-//   });
-
+/*
+    Serves index.html
+*/
 app.get("/", (req, res) => {
-    // res.setHeader('X-Content-Type-Options', 'nosniff');
-    // console.log(req.url.slice(1));
-    // console.log(req.url);
     const filePath = path.resolve(__dirname, "..", "frontend", "build", "index.html");
     res.sendFile(filePath, (err) => {
         if (err) {
@@ -54,9 +39,11 @@ app.get("/", (req, res) => {
             res.status(404).send("File not found");
         }
     })
-    // res.sendFile(path.resolve(__dirname, "..", "frontend", "build", "index.html"));
-    console.log('Route handler for "/" is executed');
 });
+
+/*
+    Serves JS build files
+*/
 
 app.get("/static/js/*", (req, res) => {
     let x = req.url.lastIndexOf('/');
@@ -65,12 +52,20 @@ app.get("/static/js/*", (req, res) => {
     console.log("Route handler for js files executed")
 })
 
+/*
+    Serves CSS build files
+*/
+
 app.get("/static/css/*", (req, res) => {
     let x = req.url.lastIndexOf('/');
     let result = req.url.substring(x + 1);
     res.sendFile(path.resolve(__dirname, "..", "frontend", "build", "static", "css", result));
     console.log("Route handler for css files executed")
 })
+
+/*
+    Serves media build files (etc. Bootstrap icons)
+*/
 
 app.get("/static/media/*", (req, res) => {
     let x = req.url.lastIndexOf('/');

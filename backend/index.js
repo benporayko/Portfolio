@@ -43,10 +43,10 @@ app.get('*.css', function(req, res, next) {
 //     console.log('Route handler for "/" is executed');
 //   });
 
-app.get("*", (req, res) => {
+app.get("/", (req, res) => {
     // res.setHeader('X-Content-Type-Options', 'nosniff');
-    console.log(req.url.slice(1));
-    console.log(req.url);
+    // console.log(req.url.slice(1));
+    // console.log(req.url);
     const filePath = path.resolve(__dirname, "..", "frontend", "build", "index.html");
     res.sendFile(filePath, (err) => {
         if (err) {
@@ -57,6 +57,22 @@ app.get("*", (req, res) => {
     // res.sendFile(path.resolve(__dirname, "..", "frontend", "build", "index.html"));
     console.log('Route handler for "/" is executed');
 });
+
+app.get("/static/js/*", (req, res) => {
+    let x = req.url.lastIndexOf('/');
+    let result = req.url.substring(x + 1);
+    res.sendFile(path.resolve(__dirname, "..", "frontend", "build", "static", "js", result));
+    console.log("Route handler for js files executed")
+    console.log("Line 65 " + result)
+})
+
+app.get("/static/css/*", (req, res) => {
+    let x = req.url.lastIndexOf('/');
+    let result = req.url.substring(x + 1);
+    res.sendFile(path.resolve(__dirname, "..", "frontend", "build", "static", "css", result));
+    console.log("Route handler for js files executed")
+    console.log("Line 72 " + result)
+})
 
 // Connection to the database and starts up the server
 async function connectToDatabase() {

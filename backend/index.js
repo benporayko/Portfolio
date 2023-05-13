@@ -18,6 +18,8 @@ console.log(__dirname);
 
 app.get('/', function (req, res, next) {
     console.log('Route handler for "/" is executed');
+    console.log(req);
+    console.log(res);
     res.sendFile(path.join(__dirname, "../frontend/build", "index.html"));
     console.log(res.sendFile(path.join(__dirname, "../frontend/build", "index.html")));
     console.log(__dirname);

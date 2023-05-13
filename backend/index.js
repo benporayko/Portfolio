@@ -13,7 +13,7 @@ dotenv.config()
 const MongoClient = mongodb.MongoClient;
 const port = process.env.PORT || 8000;
 
-app.use(express.static(path.join(__dirname, "frontend/build")));
+app.use(express.static(path.join(__dirname, "frontend/build/static")));
 
 // // prevents MIME type mismatch issues
 // app.use((req, res, next) => {
@@ -29,6 +29,10 @@ app.get('*.css', function(req, res, next) {
     res.set('Content-Type', 'text/css');
     next();
 });
+
+// app.get('/static', function(req, res, next) {
+
+// })
   
 
 app.get("/", (req, res,) => {

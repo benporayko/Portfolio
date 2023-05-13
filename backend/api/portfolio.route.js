@@ -16,7 +16,7 @@ authenticatedRoutes.use(verifyJWT);
 const storage = multer.memoryStorage();
 const upload = multer({dest: 'uploads/'});
 
-// router.route("/").get(BlogPostsCtrl.apiGetBlogPosts);
+router.route("/").get(BlogPostsCtrl.apiGetBlogPosts);
 router.route("/id/:id").get(BlogPostsCtrl.apiGetBlogPostsById);
 
 authenticatedRoutes.put("/edit", upload.single('file'), async (req, res, next) => {

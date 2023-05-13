@@ -45,7 +45,7 @@ app.get('*.css', function(req, res, next) {
 
 app.get("*", (req, res) => {
     // res.setHeader('X-Content-Type-Options', 'nosniff');
-    const filePath = path.resolve(__dirname, "..", "frontend", "build", req.url.slice(1));
+    const filePath = path.resolve(__dirname, "..", "frontend", "build", "index.html");
     res.sendFile(filePath, (err) => {
         if (err) {
             console.error(err);

@@ -63,15 +63,20 @@ app.get("/static/js/*", (req, res) => {
     let result = req.url.substring(x + 1);
     res.sendFile(path.resolve(__dirname, "..", "frontend", "build", "static", "js", result));
     console.log("Route handler for js files executed")
-    console.log("Line 65 " + result)
 })
 
 app.get("/static/css/*", (req, res) => {
     let x = req.url.lastIndexOf('/');
     let result = req.url.substring(x + 1);
     res.sendFile(path.resolve(__dirname, "..", "frontend", "build", "static", "css", result));
-    console.log("Route handler for js files executed")
-    console.log("Line 72 " + result)
+    console.log("Route handler for css files executed")
+})
+
+app.get("/static/media/*", (req, res) => {
+    let x = req.url.lastIndexOf('/');
+    let result = req.url.substring(x + 1);
+    res.sendFile(path.resolve(__dirname, "..", "frontend", "build", "static", "media", result));
+    console.log("Route handler for media files executed")
 })
 
 // Connection to the database and starts up the server

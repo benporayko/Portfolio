@@ -11,7 +11,7 @@ class BlogDataService {
     }
     createPost(data) {
         return axios.create({
-            baseURL: "http://localhost:5000/api/v1/portfolio",
+            baseURL: "https://benporayko.herokuapp.com/api/v1/portfolio",
             headers: {
                 "x-access-token": localStorage.getItem("token"),
                 "Content-Type": "multipart/form-data"
@@ -20,7 +20,7 @@ class BlogDataService {
     }
     updatePost(data) {
         return axios.create({
-            baseURL: "http://localhost:5000/api/v1/portfolio",
+            baseURL: "https://benporayko.herokuapp.com/api/v1/portfolio",
             headers: {
                 "x-access-token": localStorage.getItem("token"),
                 "Content-Type": "multipart/form-data"
@@ -29,7 +29,7 @@ class BlogDataService {
     }
     deletePost(data) {
         return axios.create({
-            baseURL: "http://localhost:5000/api/v1/portfolio",
+            baseURL: "https://benporayko.herokuapp.com/api/v1/portfolio",
             headers: {
                 "x-access-token": localStorage.getItem("token"),
                 "Content-Type": "multipart/form-data"
@@ -41,7 +41,7 @@ class BlogDataService {
     }
     isUserAuth(data) {
         return axios.create({
-            baseURL: "http://localhost:5000/api/v1/portfolio",
+            baseURL: "https://benporayko.herokuapp.com/api/v1/portfolio",
             headers: {
                 "x-access-token": localStorage.getItem("token")
             }

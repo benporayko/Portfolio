@@ -16,6 +16,7 @@ app.use(bodyParser.json(), urlencodedParser);
 
 app.use(cors());
 app.use(express.json());
+app.enable('trust proxy'); 
 
 app.use("/api/v1/portfolio", portfolio);
 // app.use("*", (req, res) => res.status(404).json({ error: "not found"}))

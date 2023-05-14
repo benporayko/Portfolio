@@ -14,7 +14,6 @@ const MongoClient = mongodb.MongoClient;
 const port = process.env.PORT || 8000;
 
 app.use(express.static(path.join(__dirname, "frontend/build")));
-
 /* 
     Handles MIME type mismatch
 */

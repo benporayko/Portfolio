@@ -73,6 +73,20 @@ app.get("/static/media/*", (req, res) => {
     console.log("Route handler for media files executed")
 })
 
+/*
+    Routes any other URLs back to index.html (Allows React routing to work)
+*/
+
+app.get("*", (req, res) => {
+    const filePath = path.resolve(__dirname, "..", "frontend", "build", "index.html");
+    res.sendFile(filePath, (err) => {
+        if (err) {
+            console.error(err);
+            res.status(404).send("File not found");
+        }
+    })
+});
+
 // Connection to the database and starts up the server
 async function connectToDatabase() {
     try {
